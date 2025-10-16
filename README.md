@@ -45,7 +45,8 @@ The main script, `annotate_context.py`, performs the following steps:
 ├── annotate_context.py         # Main analysis script
 ├── annotated_calls/            # Output directory for annotated files
 │   ├── ...
-│   └── master_annotated_calls_deduped.csv
+│   ├── duplicate_rows.csv      # Duplicate mutation calls
+│   └── master_annotated_calls_deduped.csv # All mutations without duplicates
 ├── mutation_calls/             # Input directory for mutation CSVs
 │   └── ...
 ├── .gitignore                  # Git ignore rules

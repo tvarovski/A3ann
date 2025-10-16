@@ -144,3 +144,5 @@ if __name__ == "__main__":
     master_df, duplicate_rows = remove_duplicate_mutations(master_df)
 
     master_df.to_csv("annotated_calls/master_annotated_calls_deduped.csv", index=False)
+    duplicate_rows.to_csv("annotated_calls/duplicate_rows.csv", index=False)
+    
