@@ -147,8 +147,13 @@ if __name__ == "__main__":
         df['Mapping'] = df['Mapping'].str.replace(" mapping", "")
 
         annotated_df = annotate_genomic_context(df, fasta_file_path=REFERENCE_GENOME_FASTA)
-        annotated_df = annotate_a3a_context(annotated_df)
 
+        # Annotate A3A context mutations for specified C and G spectra
+        annotated_df = annotate_a3a_context(
+            annotated_df=annotated_df,
+            forward_strand_c_spectra=['T', 'G'],
+            reverse_strand_g_spectra=['A', 'T']
+            )
         annotated_df.to_csv(os.path.join("annotated_calls", csv_file), index=False)
 
         annotated_df["origin_file"] = csv_file
