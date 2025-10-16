@@ -1,4 +1,4 @@
-# Mutation Annotation Pipeline
+# APOBEC Annotator
 
 This project provides a pipeline for annotating mutation calls with genomic context and identifying specific mutation signatures, such as those associated with APOBEC3A (A3A).
 
@@ -8,9 +8,14 @@ The main script, `annotate_context.py`, performs the following steps:
 1. Reads mutation call files (in CSV format) from the `mutation_calls` directory.
 2. Filters for Single Nucleotide Variants (SNVs).
 3. Annotates each SNV with its genomic context (trinucleotide sequence) using a reference FASTA file.
-4. Identifies mutations occurring in an A3A-like context.
+4. Identifies mutations occurring in an A3A-like context:
+   - Mutation is a C>T or C>G mutation
+   - Mutation satisfies one of the following:
+      - Mutation occurs in a tCa, tCt, or tCg trinucleotide context (positive strand)
+      - Mutation occurs in a tGa, aGa, or cGa trinucleotide context (negative strand)
 5. Writes the annotated calls to the `annotated_calls` directory.
 6. Consolidates all annotated calls into a master file, removing duplicates.
+7. Saves all duplicate mutation calls to a separate file.
 
 ## Installation
 

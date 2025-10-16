@@ -67,7 +67,7 @@ def annotate_a3a_context(annotated_df: pd.DataFrame) -> pd.DataFrame:
 
     # Define A3A context trinucleotides
     a3a_context_trinucleotides_top = {"TCA", "TCT", "TCG"}
-    a3a_context_trinucleotides_bottom = {"AGA", "TGA", "CGA"}
+    a3a_context_trinucleotides_bottom = {"TGA", "AGA", "CGA"}
 
     # Condition for C>T or C>G mutations in top strand context
     cond1 = (
