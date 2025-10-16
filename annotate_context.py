@@ -130,6 +130,10 @@ if __name__ == "__main__":
         df = pd.read_csv(os.path.join("mutation_calls", csv_file))
 
         df = df[df['Type'] == 'SNV']
+
+        # Following line removes the string " mapping" from the 'Mapping' column
+        # This is may be necessary as the 'Mapping' column may contain extra 
+        # descriptive text that doesn't match the reference FASTA naming.
         df['Mapping'] = df['Mapping'].str.replace(" mapping", "")
 
         annotated_df = annotate_genomic_context(df, fasta_file_path=REFERENCE_GENOME_FASTA)
