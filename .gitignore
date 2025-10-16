@@ -1,0 +1,4 @@
+__pycache__/
+
+mutation_calls/*.csv
+annotated_calls/*.csv
