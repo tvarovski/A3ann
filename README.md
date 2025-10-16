@@ -32,6 +32,15 @@ The main script, `annotate_context.py`, performs the following steps:
 
 ## Usage
 
+Script is set up to work with outputs of CLC Genomics Workbench. To use with other variant callers, 
+ensure your CSVs have these columns: 
+ - `Mapping` - Chromosome or contig name. Ensure naming matches reference FASTA.
+ - `Reference Position` - Position of the variant on the reference
+ - `Reference` - Reference Allele
+ - `Allele` - Variant Allele
+ - `Type` - Mutation type (e.g., SNV)
+ You can adapt the script for other callers by ensuring these columns are present, or you can modify the script accordingly, for example by changing the default column names in the `annotate_genomic_context()` function.
+
 1. **Place your reference genome** in FASTA format in the root directory of the project (e.g., `AM3422_de_novo.fasta`).
 2. **Place your mutation call CSV files** in the `mutation_calls` directory.
 3. **Run the script:**
