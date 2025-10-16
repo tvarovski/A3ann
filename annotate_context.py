@@ -48,11 +48,21 @@ def annotate_genomic_context(
         df = df[df['seq_len'] == expected_len].copy()
     return df
 
-def annotate_a3a_context(annotated_df: pd.DataFrame) -> pd.DataFrame:
+def annotate_a3a_context(
+        annotated_df: pd.DataFrame,
+        forward_strand_c_spectra: list = ['T', 'G'],
+        reverse_strand_g_spectra: list = ['A', 'T']
+        
+        
+        ) -> pd.DataFrame:
     """Annotates a DataFrame with A3A context.
 
     Args:
         annotated_df: DataFrame with a 'seq' column containing trinucleotide sequences.
+        forward_strand_c_spectra: List of alleles considered on the forward strand for C mutations.
+            For example, ['T', 'G'] means C>T and C>G mutations are considered.
+        reverse_strand_g_spectra: List of alleles considered on the reverse strand for G mutations.
+            For example, ['A', 'T'] means G>A and G>T mutations are considered.
 
     Returns:
         DataFrame with an added 'A3A_context' boolean column.
@@ -72,14 +82,14 @@ def annotate_a3a_context(annotated_df: pd.DataFrame) -> pd.DataFrame:
     # Condition for C>T or C>G mutations in top strand context
     cond1 = (
         (annotated_df['Reference'] == 'C') &
-        (annotated_df['Allele'].isin(['T', 'G'])) &
+        (annotated_df['Allele'].isin(forward_strand_c_spectra)) &
         (annotated_df['seq'].isin(a3a_context_trinucleotides_top))
     )
 
     # Condition for G>A or G>T mutations in bottom strand context (reverse complement)
     cond2 = (
         (annotated_df['Reference'] == 'G') &
-        (annotated_df['Allele'].isin(['A', 'T'])) &
+        (annotated_df['Allele'].isin(reverse_strand_g_spectra)) &
         (annotated_df['seq'].isin(a3a_context_trinucleotides_bottom))
     )
 
