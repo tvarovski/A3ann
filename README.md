@@ -39,6 +39,7 @@ ensure your CSVs have these columns:
  - `Reference` - Reference Allele
  - `Allele` - Variant Allele
  - `Type` - Mutation type (e.g., SNV)
+
  You can adapt the script for other callers by ensuring these columns are present, or you can modify the script accordingly, for example by changing the default column names in the `annotate_genomic_context()` function.
 
 1. **Place your reference genome** in FASTA format in the root directory of the project (e.g., `AM3422_de_novo.fasta`).
